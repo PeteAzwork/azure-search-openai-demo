@@ -75,7 +75,7 @@ const Chat = () => {
         return fullResponse;
     };
 
-    const client = useLogin ? useMsal().instance : undefined
+    const client = useLogin ? useMsal().instance : undefined;
 
     const makeApiRequest = async (question: string) => {
         lastQuestionRef.current = question;
@@ -85,7 +85,7 @@ const Chat = () => {
         setActiveCitation(undefined);
         setActiveAnalysisPanelTab(undefined);
 
-        const token = client ? await getToken(client) : undefined
+        const token = client ? await getToken(client) : undefined;
 
         try {
             const history: ChatTurn[] = answers.map(a => ({ user: a[0], bot: a[1].answer }));
@@ -280,12 +280,7 @@ const Chat = () => {
                     )}
 
                     <div className={styles.chatInput}>
-                        <QuestionInput
-                            clearOnSend
-                            placeholder="Type a new question (e.g. does my plan cover annual eye exams?)"
-                            disabled={isLoading}
-                            onSend={question => makeApiRequest(question)}
-                        />
+                        <QuestionInput clearOnSend placeholder="Type a new question" disabled={isLoading} onSend={question => makeApiRequest(question)} />
                     </div>
                 </div>
 
@@ -355,7 +350,7 @@ const Chat = () => {
                             onChange={onUseOidSecurityFilterChange}
                         />
                     )}
-                    {useLogin &&  (
+                    {useLogin && (
                         <Checkbox
                             className={styles.chatSettingsSeparator}
                             checked={useGroupsSecurityFilter}
@@ -381,7 +376,7 @@ const Chat = () => {
                         label="Stream chat completion responses"
                         onChange={onShouldStreamChange}
                     />
-                    { useLogin && <TokenClaimsDisplay />}
+                    {useLogin && <TokenClaimsDisplay />}
                 </Panel>
             </div>
         </div>
